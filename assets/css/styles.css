@@ -36,14 +36,12 @@ body {
 }
 
 .theme-switch-wrapper {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
+    width: 140px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     background: var(--card-background);
-    padding: 0.75rem 1rem;
+    padding: 0.75rem;
     border-radius: var(--border-radius);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -54,6 +52,7 @@ body {
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-bottom: 0;
 }
 
 .theme-switch input {
