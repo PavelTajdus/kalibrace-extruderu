@@ -1,0 +1,219 @@
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1e40af;
+    --button-color: #16a34a;
+    --button-hover: #15803d;
+    --background-color: #f8fafc;
+    --card-background: white;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --border-radius: 12px;
+    --code-background: #f1f5f9;
+    --toggle-background: #e2e8f0;
+    --toggle-button: white;
+}
+
+[data-theme="dark"] {
+    --primary-color: #60a5fa;
+    --primary-dark: #3b82f6;
+    --background-color: #0f172a;
+    --card-background: #1e293b;
+    --text-color: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --code-background: #2d3748;
+    --toggle-background: #60a5fa;
+    --toggle-button: #0f172a;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switch-wrapper {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--card-background);
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--toggle-background);
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--toggle-button);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-card,
+.calculator {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    transition: background-color 0.3s;
+}
+
+.info-card h4 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+.form-control {
+    background-color: var(--card-background);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+.form-text {
+    color: var(--text-muted);
+}
+
+.btn-primary {
+    background-color: var(--button-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-1px);
+}
+
+code {
+    background: var(--code-background);
+    color: var(--primary-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.error-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: #fef2f2;
+    border-radius: var(--border-radius);
+    border: 2px solid #fecaca;
+    color: #dc2626;
+}
+
+[data-theme="dark"] .error-message {
+    background: #451a1a;
+    border-color: #991b1b;
+    color: #fca5a5;
+}
+
+.error-message p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.result {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--code-background);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem auto;
+    }
+
+    .calculator,
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}

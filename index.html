@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulačka pro kalibraci extruderu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <span>🌞</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span>🌙</span>
+    </div>
+
+    <div class="container">
+        <h1>Kalkulačka pro kalibraci extruderu</h1>
+        
+        <div class="info-card">
+            <p>Tato kalkulačka vám pomůže správně nastavit kroky extrudéru (rotation_distance) pro Klipper firmware. Více informací najdete v <a href="https://www.klipper3d.org/Rotation_Distance.html" target="_blank">oficiální Klipper dokumentaci</a>.</p>
+            
+            <h4>Jak kalibrovat extruder:</h4>
+            <ol>
+                <li>Zjistěte aktuální hodnotu <code>rotation_distance</code> z vašeho firmware (v souboru printer.cfg v sekci extruder)</li>
+                <li>Označte si filament 120mm od vstupu do extrudéru</li>
+                <li>Extrudujte přesně 100mm filamentu (nízkou rychlostí)</li>
+                <li>Změřte zbývající vzdálenost ke značce</li>
+                <li>Zadejte naměřené hodnoty do kalkulačky</li>
+                <li>Použijte vypočítanou hodnotu jako novou hodnotu <code>rotation_distance</code> a zapište do souboru printer.cfg</li>
+            </ol>
+            
+            <p>Vzorec pro výpočet: <code>Nové kroky extruderu = (Současné kroky × Požadovaná délka) ÷ Skutečná délka</code></p>
+        </div>
+
+        <div class="calculator">
+            <div class="form-group">
+                <label>Aktuální hodnota <code>rotation_distance</code>:</label>
+                <input type="number" class="form-control" id="currentEsteps" step="0.01">
+                <small class="form-text">Zadejte aktuální hodnotu <code>rotation_distance</code> z vašeho firmware</small>
+            </div>
+
+            <div class="form-group">
+                <label>Požadovaná délka extruze (mm):</label>
+                <input type="number" class="form-control" id="requestedLength" step="1" value="100">
+                <small class="form-text">Standardně 100mm</small>
+            </div>
+
+            <div class="form-group">
+                <label>Skutečná délka extruze (mm):</label>
+                <input type="number" class="form-control" id="actualLength" step="0.01">
+                <small class="form-text">Změřte skutečnou délku vytlačeného filamentu</small>
+            </div>
+
+            <button class="btn btn-primary" onclick="calculate()">Vypočítat novou hodnotu rotation_distance</button>
+            <div class="error-message" id="error-message" style="display: none;">
+                <p class="text-danger">⚠️ Prosím vyplňte všechna pole pro správný výpočet</p>
+            </div>
+            <div class="result" id="result" style="display: none;">
+                <h3>Výsledek</h3>
+                <p>Nová hodnota rotation_distance: <strong><span id="newEsteps"></span></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
