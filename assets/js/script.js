@@ -65,7 +65,7 @@ function calculate() {
     });
 
     // Výpočet a zobrazení výsledku
-    const newEsteps = (currentEsteps * requestedLength) / actualLength;
+    const newEsteps = (currentEsteps * actualLength) / requestedLength;
     document.getElementById('newEsteps').textContent = newEsteps.toFixed(2);
     result.style.display = 'block';
 }
